@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: awx-ingress
+  namespace: awx  # Cambia esto si tu AWX está en otro namespace
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: docker.casa.lan  # Cambia esto al dominio que quieras usar
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: awx-demo-service  # Nombre del servicio de AWX
+            port:
+              number: 30080

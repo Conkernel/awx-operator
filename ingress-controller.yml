@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ingress-nginx-controller
+  namespace: ingress-nginx
+spec:
+  ports:
+    - name: http
+      port: 8087  # Cambiado a 8087
+      targetPort: http
+      nodePort: 32080  # Cambia a un puerto no utilizado
+    - name: https
+      port: 8443  # Cambiado a 8443
+      targetPort: https
+      nodePort: 32443  # Cambia a un puerto no utilizado
+  type: NodePort
